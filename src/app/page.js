@@ -2,6 +2,7 @@ import Footer from "@/components/layout/footer/Footer";
 import Header from "@/components/layout/header/Header";
 import About1 from "@/components/sections/About/About1";
 import Blogs1 from "@/components/sections/blogs/Blogs1";
+import BentoGrid from "@/components/sections/bento-grid/BentoGrid";
 import Features from "@/components/sections/features/Features";
 import Funfact1 from "@/components/sections/funfacts/Funfact1";
 import Hero from "@/components/sections/heros/Hero";
@@ -23,6 +24,7 @@ export default function Home() {
 				<Hero />
 				<LiveStats />
 				<Features />
+				<BentoGrid />
 				<About1 />
 				<Services1 />
 				<Funfact1 />

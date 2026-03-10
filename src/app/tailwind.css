@@ -64,6 +64,34 @@ h1.liquid-header.liquid-header--dark.font-heading.mb-8.transition-all.duration-1
 	animation: floatHero 5s ease-in-out infinite;
 }
 
+@keyframes scroll {
+	0% {
+		transform: translateX(0);
+	}
+	100% {
+		transform: translateX(-50%);
+	}
+}
+
+.animate-scroll {
+	animation: scroll 40s linear infinite;
+}
+
+.animate-scroll:hover {
+	animation-play-state: paused;
+}
+
+@keyframes velocityPulse {
+	0% {
+		transform: scale(1);
+		opacity: 0.4;
+	}
+	100% {
+		transform: scale(1.8);
+		opacity: 0;
+	}
+}
+
 /* LiveStats */
 .live-stats__value {
 	font-family: var(--tj-ff-heading), sans-serif;

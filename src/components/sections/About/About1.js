@@ -1,13 +1,28 @@
 "use client";
 import ButtonPrimary from "@/components/shared/buttons/ButtonPrimary";
 import FunfactSingle from "@/components/shared/funfact/FunfactSingle";
+import AnimatedOneLogo from "@/components/shared/AnimatedOneLogo";
 import borderRadiusAnimation from "@/libs/borderRadiusAnimation";
 import { useGSAP } from "@gsap/react";
 import Image from "next/image";
-import { useRef } from "react";
+import { useRef, useState, useEffect } from "react";
 
 const About1 = () => {
 	const animContainerRef = useRef();
+	const logoWrapRef = useRef(null);
+	const [logoActive, setLogoActive] = useState(false);
+
+	useEffect(() => {
+		const el = logoWrapRef.current;
+		if (!el) return;
+		const io = new IntersectionObserver(
+			([e]) => setLogoActive(e.isIntersecting),
+			{ threshold: 0.2 }
+		);
+		io.observe(el);
+		return () => io.disconnect();
+	}, []);
+
 	useGSAP(
 		() => {
 			borderRadiusAnimation(".tj-about-section");
@@ -23,12 +38,17 @@ const About1 = () => {
 						<div className="col-lg-6">
 							<div className="about-left-content">
 								<div className="sec-heading">
-									<span
-										className="sub-title wow fadeInUp"
-										data-wow-delay="0.1s"
+									<div
+										ref={logoWrapRef}
+										className="about-one-logo-wrap"
+										style={{ maxWidth: "520px", height: "140px", color: "inherit", marginLeft: "-71px" }}
 									>
-										About ONE Agency
-									</span>
+										<AnimatedOneLogo
+											active={logoActive}
+											className="w-full h-full"
+											style={{ width: "100%", height: "100%", display: "block" }}
+										/>
+									</div>
 									<h2 className="sec-title text-anim">
 										Orchestrating hyper-growth for market dominators
 									</h2>
@@ -112,7 +132,7 @@ const About1 = () => {
 				<div className="about-bg-images">
 					<div className="about-shape-1 hover:shine">
 						<Image
-							src="/images/about/h2-shape-1.webp"
+							src="/home/h2-shape-1.png"
 							alt="Shapes"
 							height={624}
 							width={756}
@@ -120,7 +140,7 @@ const About1 = () => {
 					</div>
 					<div className="about-shape-2 hover:shine">
 						<Image
-							src="/images/about/h2-shape-2.webp"
+							src="/home/h2-shape-2.png"
 							alt="Shapes"
 							height={137}
 							width={138}
