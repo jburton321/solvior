@@ -125,7 +125,7 @@ const Features = ({ type }) => {
 
 					{isHome1 && (
 						<div className="flex justify-center mt-12">
-							<ButtonPrimary text="View All Solutions" url="/solutions" />
+							<ButtonPrimary text="View All Solutions" url="/solutions" className="white-btn" />
 						</div>
 					)}
 				</div>

@@ -1,6 +1,9 @@
 @use "../utilities" as *;
 
 /* START: Feature CSS */
+/* Shared gradient: Skills accordion & scroll-hero feature cards */
+$skill-accordion-gradient: linear-gradient(180deg, rgb(37, 99, 235) 0%, rgb(29, 78, 216) 40%, rgb(0, 26, 95) 100%);
+
 .tj-feature-section {
 	overflow: hidden;
 
@@ -11,18 +14,12 @@
 	&-wrap {
 		background-color: var(--tj-color-common-white);
 	}
-	.sec-heading {
-		max-width: 585px;
-		width: 100%;
-		margin-inline-start: auto;
-		margin-inline-end: auto;
-		.desc {
-			p {
-				&:last-child {
-					margin-bottom: 0;
-				}
-			}
-		}
+}
+
+/* scroll-hero: light section bg, gradient on cards only */
+#scroll-hero.tj-feature-section {
+	.tj-feature-section-wrap {
+		background-color: #F7FAFC;
 	}
 }
 .tj-feature-section-two {
@@ -144,6 +141,49 @@
 				inset-inline-start: 0;
 				inset-inline-end: auto;
 			}
+		}
+	}
+}
+
+/* scroll-hero feature cards: same gradient as Skills accordion */
+#scroll-hero .feature-item.hover-bg {
+	background: $skill-accordion-gradient;
+	border-color: rgba(255, 255, 255, 0.15);
+	color: rgba(255, 255, 255, 0.95);
+	&::before {
+		display: none;
+	}
+	.feature-icon {
+		color: rgba(255, 255, 255, 0.9);
+	}
+	.title {
+		color: #fff;
+	}
+	.desc {
+		color: rgba(255, 255, 255, 0.85);
+		p {
+			color: inherit;
+		}
+	}
+	&::after {
+		content: "";
+		position: absolute;
+		inset: 0;
+		background: rgba(255, 255, 255, 0.08);
+		opacity: 0;
+		@include transition(opacity 0.3s ease-in-out);
+		z-index: 0;
+		pointer-events: none;
+	}
+	.feature-item-link,
+	.feature-icon,
+	.feature-content {
+		position: relative;
+		z-index: 1;
+	}
+	&:hover {
+		&::after {
+			opacity: 1;
 		}
 	}
 	@media #{$lg, $md, $sm, $xs} {
