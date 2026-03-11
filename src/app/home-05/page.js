@@ -6,7 +6,6 @@ import Cta4 from "@/components/sections/cta/Cta4";
 import Features4 from "@/components/sections/features/Features4";
 import Hero5 from "@/components/sections/heros/Hero5";
 import Portfolios5 from "@/components/sections/portfolios/Portfolios5";
-import PricingPlan2 from "@/components/sections/pricing-plan/PricingPlan2";
 import Process from "@/components/sections/process/Process";
 import Services5 from "@/components/sections/services/Services5";
 import Team3 from "@/components/sections/teams/Team3";
@@ -28,7 +27,6 @@ export default function Home5() {
 				<Process />
 				<Team3 />
 				<Portfolios5 />
-				<PricingPlan2 />
 				<Testimonials4 />
 				<Blogs5 />
 				<Cta4 />

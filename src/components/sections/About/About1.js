@@ -1,5 +1,5 @@
 "use client";
-import ButtonPrimary from "@/components/shared/buttons/ButtonPrimary";
+import QuoteButton from "@/components/shared/buttons/QuoteButton";
 import FunfactSingle from "@/components/shared/funfact/FunfactSingle";
 import AnimatedOneLogo from "@/components/shared/AnimatedOneLogo";
 import borderRadiusAnimation from "@/libs/borderRadiusAnimation";
@@ -81,7 +81,7 @@ const About1 = () => {
 												</ul>
 											</div>
 											<div className="about-button">
-												<ButtonPrimary url="/about" text={"Learn more"} />
+												<QuoteButton />
 											</div>
 										</div>
 									</div>

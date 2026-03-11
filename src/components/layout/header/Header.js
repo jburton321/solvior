@@ -1,7 +1,7 @@
 "use client";
 import ButtonHeaderContact from "@/components/shared/buttons/ButtonHeaderContact";
 import ButtonMenuToggler from "@/components/shared/buttons/ButtonMenuToggler";
-import ButtonPrimary from "@/components/shared/buttons/ButtonPrimary";
+import QuoteButton from "@/components/shared/buttons/QuoteButton";
 import ButtonSearch from "@/components/shared/buttons/ButtonSearch";
 import useIsSticky from "@/hooks/useIsSticky";
 import { Fragment, useCallback, useState } from "react";
@@ -103,24 +103,7 @@ const Header = ({ headerType, isHeaderTop, topbarType, isStickyHeader }) => {
 											""
 										)}
 										{headerType !== 2 ? (
-											<ButtonPrimary
-												text={
-													headerType === 8 ? "Free consultation" : "Get a quote"
-												}
-												url={"/contact"}
-												className={
-													(headerType === 3 ||
-														headerType == 4 ||
-														headerType == 5 ||
-														headerType == 6 ||
-														headerType == 9) &&
-													!isStickyHeader
-														? ""
-														: headerType == 9
-														? ""
-														: "header_btn"
-												}
-											/>
+											<QuoteButton className="white-btn" />
 										) : (
 											""
 										)}{" "}

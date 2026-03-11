@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { ChevronRight } from "lucide-react";
+import QuoteButton from "@/components/shared/buttons/QuoteButton";
 
 const EXPERTISE = [
 	{
@@ -53,6 +54,9 @@ function ActivePanel({ step }) {
 					</div>
 					<p className="skill-active-panel__sub">{step.sub}</p>
 					<p className="skill-active-panel__text">{step.text}</p>
+					<div className="mt-6">
+						<QuoteButton className="white-btn" />
+					</div>
 				</div>
 				<div>
 					<div className="skill-active-panel__stat-row">

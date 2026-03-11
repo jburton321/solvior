@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import { createPortal } from "react-dom";
-import ButtonPrimary from "@/components/shared/buttons/ButtonPrimary";
+import QuoteButton from "@/components/shared/buttons/QuoteButton";
 import useScrollReveal from "@/hooks/useScrollReveal";
 import {
 	ArrowRight,
@@ -214,7 +214,7 @@ function StackModal({ item, index, onClose }) {
 						{item.detail}
 					</p>
 					<div className="mt-8 sm:mt-10 flex flex-col sm:flex-row gap-3 pb-2 sm:pb-0">
-						<ButtonPrimary text="Request your strategy session" url="/contact" />
+						<QuoteButton />
 						<button
 							onClick={handleClose}
 							className="py-4 px-6 border border-slate-200 text-slate-500 font-bold uppercase text-xs hover:border-slate-300 hover:text-slate-700 transition-all duration-300 rounded-xl"
@@ -443,7 +443,7 @@ export default function GrowthStack() {
 			ref={ref}
 			id="growth-engine"
 			className="relative z-10 py-14 sm:py-20 md:py-28 lg:py-32 px-5 sm:px-8 md:px-12 lg:px-20"
-			style={{ backgroundColor: "#F8FAFC" }}
+			style={{ backgroundColor: "#ffffff" }}
 		>
 			<div className="absolute inset-0 overflow-hidden pointer-events-none">
 				<div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-blue-500/[0.03] rounded-full blur-[120px]" />
@@ -472,7 +472,7 @@ export default function GrowthStack() {
 						Built on proprietary technology. Managed by
 						performance&nbsp;obsessives.
 					</p>
-					<ButtonPrimary text="Request your strategy session" url="/contact" />
+					<QuoteButton />
 				</div>
 				<div className="md:w-[62%] grid sm:grid-cols-2 gap-4">
 					{stack.map((s, i) => (

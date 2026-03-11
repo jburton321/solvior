@@ -1,5 +1,5 @@
 import Link from "next/link";
-import ButtonPrimary from "../buttons/ButtonPrimary";
+import QuoteButton from "../buttons/QuoteButton";
 
 const PortfolioCard10 = ({ portfolio, idx, lastItem }) => {
 	const { title, img6, id, tags } = portfolio ? portfolio : {};
@@ -38,11 +38,7 @@ const PortfolioCard10 = ({ portfolio, idx, lastItem }) => {
 					that address your most pressing business on challenges. Whether you
 					are facing.
 				</div>
-				<ButtonPrimary
-					text={"Learn more"}
-					url={`/portfolios/${id}`}
-					className={"project_button"}
-				/>
+				<QuoteButton className="project_button" />
 			</div>
 		</div>
 	);

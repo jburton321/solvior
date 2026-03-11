@@ -128,12 +128,15 @@
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: space-between;
+	align-items: stretch;
 	width: 100%;
 	height: 100%;
 	background-color: var(--tj-color-theme-dark);
+	border-radius: 25px;
+	overflow: hidden;
 	position: relative;
 	z-index: 5;
-	margin-bottom: 30px;
+	margin-bottom: 50px;
 	.service-images {
 		max-width: 645px;
 		width: 100%;
@@ -164,30 +167,32 @@
 	}
 	.service-content {
 		display: flex;
-		flex-wrap: wrap;
+		flex-wrap: nowrap;
 		gap: 25px;
 		flex-direction: column;
-		padding: 60px 15px 60px 65px;
+		justify-content: center;
+		align-items: flex-start;
+		flex: 1;
+		padding: 60px 40px;
 		.service-number {
 			display: flex;
 			align-items: flex-end;
 			span {
 				display: inline-block;
-				font-size: 14px;
+				font-size: 22px;
 				font-weight: var(--tj-fw-regular);
 				color: var(--tj-color-common-black-2);
 				&.active {
-					font-size: 18px;
+					font-size: 32px;
 					color: var(--tj-color-common-white);
 				}
 			}
 		}
 		.service-text {
-			max-width: 365px;
+			max-width: 420px;
 			width: 100%;
-			margin-top: auto;
 			.service-icons {
-				max-width: 56px;
+				max-width: 80px;
 				width: 100%;
 				margin-bottom: 35px;
 				img {
@@ -195,7 +200,8 @@
 				}
 			}
 			.title {
-				letter-spacing: -0.025em;
+				font-size: clamp(28px, 3vw, 42px);
+				letter-spacing: -0.03em;
 				margin-bottom: 20px;
 				a {
 					color: var(--tj-color-common-white);
@@ -241,7 +247,7 @@
 	}
 	@media #{$lg} {
 		.service-content {
-			padding: 40px 15px 40px 30px;
+			padding: 40px 30px;
 		}
 	}
 

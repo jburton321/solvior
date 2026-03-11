@@ -1,9 +1,8 @@
 "use client";
 
 import { useState, useEffect, useRef, useMemo } from "react";
-import ButtonPrimary from "@/components/shared/buttons/ButtonPrimary";
 import useScrollReveal from "@/hooks/useScrollReveal";
-import { GitBranch, Crosshair, Zap, TrendingUp } from "lucide-react";
+import { GitBranch, Crosshair, Zap, TrendingUp, Heart, MessageCircle, Send, Bookmark } from "lucide-react";
 
 // ─── FloatingOrbs ───────────────────────────────────────────────────────────
 
@@ -436,6 +435,90 @@ function InfinityMesh({ className, style, cameraZ = 120 }) {
 	);
 }
 
+// ─── MockSocialFeed ─────────────────────────────────────────────────────────
+
+const SOCIAL_POSTS = [
+	{ user: "ON", name: "ONE Agency", time: "2h", img: "from-blue-600 to-cyan-400", likes: 847, caption: "Performance creative that converts." },
+	{ user: "JT", name: "Jason T.", time: "5h", img: "from-slate-700 to-slate-900", likes: 312, caption: "Data-driven campaigns at scale." },
+	{ user: "BT", name: "Brooke T.", time: "8h", img: "from-indigo-500 to-blue-600", likes: 1204, caption: "Thumb-stopping ads that move." },
+];
+
+function MockSocialFeed() {
+	const scrollRef = useRef(null);
+	const [liked, setLiked] = useState({});
+
+	useEffect(() => {
+		const el = scrollRef.current;
+		if (!el) return;
+		let raf;
+		let t = 0;
+		function tick() {
+			t += 0.003;
+			const max = el.scrollHeight - el.clientHeight;
+			el.scrollTop = ((Math.sin(t) + 1) / 2) * max;
+			raf = requestAnimationFrame(tick);
+		}
+		raf = requestAnimationFrame(tick);
+		return () => cancelAnimationFrame(raf);
+	}, []);
+
+	useEffect(() => {
+		const timers = SOCIAL_POSTS.map((_, i) =>
+			setTimeout(() => setLiked((prev) => ({ ...prev, [i]: true })), 2400 + i * 1800)
+		);
+		return () => timers.forEach(clearTimeout);
+	}, []);
+
+	return (
+		<div className="w-full h-full flex flex-col overflow-hidden">
+			<div className="flex items-center justify-between px-3 py-2 border-b border-slate-100">
+				<span className="text-[9px] font-black uppercase tracking-wide text-slate-500">Social Feed</span>
+				<div className="flex items-center gap-1">
+					<div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+					<span className="text-[8px] font-bold text-emerald-600">Live</span>
+				</div>
+			</div>
+			<div ref={scrollRef} className="flex-1 overflow-hidden">
+				<div className="p-2 space-y-2.5">
+					{SOCIAL_POSTS.map((post, i) => (
+						<div key={i} className="rounded-lg border border-slate-100 bg-white overflow-hidden">
+							<div className="flex items-center gap-2 px-2.5 py-1.5">
+								<div className={`w-5 h-5 rounded-full bg-gradient-to-br ${post.img} flex items-center justify-center`}>
+									<span className="text-[6px] font-black text-white">{post.user}</span>
+								</div>
+								<span className="text-[9px] font-semibold text-slate-800 flex-1">{post.name}</span>
+								<span className="text-[8px] text-slate-400">{post.time}</span>
+							</div>
+							<div className="px-2.5 py-2 space-y-1.5">
+								<div className="h-2 w-full rounded bg-slate-200" />
+								<div className="h-2 w-4/5 rounded bg-slate-200" />
+								<div className="h-2 w-3/5 rounded bg-slate-100" />
+							</div>
+							<div className="px-2.5 py-1.5">
+								<div className="flex items-center justify-between mb-1">
+									<div className="flex items-center gap-2.5">
+										<Heart
+											size={11}
+											className={`transition-all duration-300 ${liked[i] ? "text-red-500 fill-red-500 scale-110" : "text-slate-400"}`}
+										/>
+										<MessageCircle size={11} className="text-slate-400" />
+										<Send size={11} className="text-slate-400" />
+									</div>
+									<Bookmark size={11} className="text-slate-400" />
+								</div>
+								<p className="text-[8px] font-bold text-slate-700">
+									{liked[i] ? (post.likes + 1).toLocaleString() : post.likes.toLocaleString()} likes
+								</p>
+								<p className="text-[8px] text-slate-500 leading-tight mt-0.5">{post.caption}</p>
+							</div>
+						</div>
+					))}
+				</div>
+			</div>
+		</div>
+	);
+}
+
 // ─── PlatformBento (main export) ────────────────────────────────────────────
 
 const C = "rounded-2xl border border-slate-200 relative overflow-hidden";
@@ -562,10 +645,10 @@ export default function PlatformBento() {
 					</div>
 
 					<div
-						className={`${C} lg:col-start-1 lg:row-start-4 p-5 sm:p-6 flex items-center justify-center min-h-[80px] lg:min-h-0`}
+						className={`${C} lg:col-start-1 lg:row-start-4 p-0 min-h-[200px] lg:min-h-0`}
 						style={cardBg("213% -151%")}
 					>
-						<ButtonPrimary text="Get started" url="/contact" />
+						<MockSocialFeed />
 					</div>
 
 					<div

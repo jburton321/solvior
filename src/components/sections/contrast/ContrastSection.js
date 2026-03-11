@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useCallback } from "react";
-import ButtonPrimary from "@/components/shared/buttons/ButtonPrimary";
 import useScrollReveal from "@/hooks/useScrollReveal";
 
 export default function ContrastSection() {
@@ -55,7 +54,7 @@ export default function ContrastSection() {
 						</h2>
 					</div>
 
-					<div className="grid sm:grid-cols-2 gap-6 mb-10 text-left">
+					<div className="grid sm:grid-cols-2 gap-6 text-left">
 						<div className="px-6 py-5 rounded-xl border border-slate-200/80 bg-slate-50/50">
 							<div className="flex items-center gap-3 mb-3">
 								<div className="h-px w-6 bg-gradient-to-r from-slate-400 to-slate-300" />
@@ -80,8 +79,6 @@ export default function ContrastSection() {
 							</p>
 						</div>
 					</div>
-
-					<ButtonPrimary text="Request your strategy session" url="/contact" />
 				</div>
 			</div>
 

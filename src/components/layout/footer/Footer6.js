@@ -1,4 +1,4 @@
-import ButtonPrimary from "@/components/shared/buttons/ButtonPrimary";
+import QuoteButton from "@/components/shared/buttons/QuoteButton";
 import FormSelect from "@/components/shared/Inputs/FormSelect";
 import Link from "next/link";
 import getFooterData from "@/libs/getFooterData";
@@ -28,11 +28,7 @@ const Footer6 = () => {
 										{ctaSubheading ?? ctaHeading ?? "Let's connect and collaborate"}
 									</h2>
 									<div className="h6-footer-widget-btn">
-										<ButtonPrimary
-											text={"Get started now"}
-											url={"/contact"}
-											className={"white-btn"}
-										/>
+										<QuoteButton className="white-btn" />
 									</div>
 								</div>
 								<div className="footer-contact-infos">

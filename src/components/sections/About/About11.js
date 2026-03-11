@@ -6,7 +6,7 @@ const About11 = () => {
 			<div className="container">
 				<div className="row rg-30 justify-content-between">
 					<div className="col-lg-6 col-md-12">
-						<div className="pricing-left-content">
+						<div className="about-left-content">
 							<div className="sec-heading mb-0">
 								<span className="sub-title wow fadeInUp" data-wow-delay="0.1s">
 									About ONE Agency

@@ -1,4 +1,5 @@
 import SmoothScroller from "@/components/shared/others/SmoothScroller";
+import ClientProviders from "@/components/shared/providers/ClientProviders";
 import { Libre_Franklin } from "next/font/google";
 import "react-range-slider-input/dist/style.css";
 import "swiper/css";
@@ -38,7 +39,9 @@ export default function RootLayout({ children }) {
 			className={`${libreFranklin.variable}`}
 		>
 			<body>
-				{children}
+				<ClientProviders>
+					{children}
+				</ClientProviders>
 				<SmoothScroller />
 			</body>
 		</html>

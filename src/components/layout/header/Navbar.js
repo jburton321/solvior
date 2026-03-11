@@ -1,4 +1,4 @@
-import ButtonPrimary from "@/components/shared/buttons/ButtonPrimary";
+import QuoteButton from "@/components/shared/buttons/QuoteButton";
 import useActiveLink from "@/hooks/useActiveLink";
 import getNavItems from "@/libs/getNavItems";
 import Image from "next/image";
@@ -175,11 +175,7 @@ const Navbar = ({ headerType, isStickyHeader }) => {
 												</p>
 											</div>
 											<div className="cta-btn">
-												<ButtonPrimary
-													text={"Get in touch"}
-													url={"/contact"}
-													className={"white-btn"}
-												/>
+												<QuoteButton className="white-btn" />
 												<Image
 													className="shapes move-anim-2"
 													src="/images/shapes/carrow.png"
@@ -301,11 +297,7 @@ const Navbar = ({ headerType, isStickyHeader }) => {
 												</p>
 											</div>
 											<div className="cta-btn">
-												<ButtonPrimary
-													text={"Get in touch"}
-													url={"/contact"}
-													className={"white-btn"}
-												/>
+												<QuoteButton className="white-btn" />
 												<Image
 													className="shapes move-anim-2"
 													src="/images/shapes/carrow.png"

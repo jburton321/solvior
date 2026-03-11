@@ -17,6 +17,7 @@ import {
 	ChevronDown,
 	X,
 } from "lucide-react";
+import QuoteButton from "@/components/shared/buttons/QuoteButton";
 import useScrollReveal from "@/hooks/useScrollReveal";
 
 // ─── Dashboard accent colors (for lightbox) ─────────────────────────────────
@@ -46,30 +47,35 @@ const LEFT_NODES = [
 		text: "Captured before competitors reach\u00A0them.",
 		detail: "Dominate search results with Google & Microsoft paid campaigns. Reach customers actively searching for solutions. Start driving qualified leads today.",
 		icon: <Search className="w-5 h-5" strokeWidth={2} />,
+		chart: { metric: "+142%", label: "ROAS Increase", bars: [30, 42, 55, 48, 68, 82, 95] },
 	},
 	{
 		title: "PAID SOCIAL",
 		text: "Thumb-stopping creative that\u00A0converts.",
 		detail: "Scale sales with Meta advertising. Scroll-stopping creative + precision targeting = conversions. Reach billions on Facebook, Instagram, and beyond.",
 		icon: <Smartphone className="w-5 h-5" strokeWidth={2} />,
+		chart: { metric: "+88%", label: "Conv. Rate", bars: [25, 38, 35, 52, 60, 72, 88] },
 	},
 	{
 		title: "PROGRAMMATIC",
 		text: "Continuous ROI\u00A0optimization.",
 		detail: "Access ad inventory across the entire web. Real-time bidding + smart automation = maximum reach. Buy smarter, not harder.",
 		icon: <MonitorSpeaker className="w-5 h-5" strokeWidth={2} />,
+		chart: { metric: "3.2x", label: "Reach Scale", bars: [40, 55, 50, 65, 75, 80, 92] },
 	},
 	{
 		title: "MARKETING AUTOMATION",
 		text: "Instant lead\u00A0follow-up.",
 		detail: "Nurture leads automatically. Send the right message at the right time. Personalize customer journeys from first click to conversion.",
 		icon: <Zap className="w-5 h-5" strokeWidth={2} />,
+		chart: { metric: "-67%", label: "Response Time", bars: [90, 78, 65, 55, 42, 35, 28] },
 	},
 	{
 		title: "REMARKETING & RETARGETING",
 		text: "Bringing visitors back to\u00A0finish.",
 		detail: "Bring back window shoppers. Serve personalized ads to visitors who left. Turn abandonment into conversions with strategic retargeting.",
 		icon: <RotateCcw className="w-5 h-5" strokeWidth={2} />,
+		chart: { metric: "+54%", label: "Return Rate", bars: [20, 35, 45, 50, 62, 70, 78] },
 	},
 ];
 
@@ -79,24 +85,28 @@ const RIGHT_NODES = [
 		text: "Social proof fuels your\u00A0funnel.",
 		detail: "Control your online narrative. Monitor reviews, respond professionally, build trust. Protect and enhance your brand reputation across all platforms.",
 		icon: <Shield className="w-5 h-5" strokeWidth={2} />,
+		chart: { metric: "4.8★", label: "Avg Rating", bars: [60, 65, 70, 72, 78, 85, 92] },
 	},
 	{
 		title: "BRANDING & PRODUCT DEV",
 		text: "Identity worth\u00A0promoting.",
 		detail: "Stand out with thumb-stopping ads. Conversion-centered design that moves users from scrollers to buyers. Persuasive creative that actually converts.",
 		icon: <Palette className="w-5 h-5" strokeWidth={2} />,
+		chart: { metric: "+96%", label: "Brand Recall", bars: [22, 38, 48, 58, 72, 85, 96] },
 	},
 	{
 		title: "SOCIAL COMMUNITY",
 		text: "Engagement into\u00A0revenue.",
 		detail: "Your comment sections turn from noise into engagement, and engagement into revenue. Active community management in your brand voice.",
 		icon: <Users className="w-5 h-5" strokeWidth={2} />,
+		chart: { metric: "+210%", label: "Engagement", bars: [18, 30, 45, 55, 70, 82, 95] },
 	},
 	{
 		title: "CRO",
 		text: "Tests to fix drop-off\u00A0points.",
 		detail: "We identify exactly where your visitors drop off and build the test to fix it. More revenue from the traffic you already have.",
 		icon: <Target className="w-5 h-5" strokeWidth={2} />,
+		chart: { metric: "-42%", label: "CPL Reduction", bars: [88, 75, 68, 60, 52, 48, 38] },
 	},
 	{
 		title: "SOFTWARE DEV & API",
@@ -104,6 +114,7 @@ const RIGHT_NODES = [
 		detail: "Get live faster. Seamless API integrations with any platform. Stop development delays. Launch campaigns three weeks instead of three months.",
 		proprietary: true,
 		icon: <Code className="w-5 h-5" strokeWidth={2} />,
+		chart: { metric: "3wk", label: "Time to Live", bars: [92, 80, 65, 50, 38, 28, 20] },
 	},
 ];
 
@@ -254,6 +265,81 @@ function EcosystemBot({ hovered, className }) {
 	);
 }
 
+// ─── Modal Chart (Hero-style animated bar chart) ────────────────────────────
+
+const CHART_DRAW = 1400;
+const CHART_LABELS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+
+function ModalChart({ chart }) {
+	const [drawn, setDrawn] = useState(false);
+
+	useEffect(() => {
+		const t = setTimeout(() => setDrawn(true), 200);
+		return () => clearTimeout(t);
+	}, []);
+
+	const maxH = Math.max(...chart.bars);
+
+	return (
+		<div
+			className="rounded-2xl border border-white/40 p-5 backdrop-blur-xl"
+			style={{ background: "rgba(255,255,255,0.55)" }}
+		>
+			<div className="flex justify-between items-center mb-1">
+				<span className="text-[10px] font-black uppercase tracking-wide" style={{ color: "#364052" }}>
+					{chart.label}
+				</span>
+				<div
+					className="flex items-center gap-1"
+					style={{
+						opacity: drawn ? 1 : 0,
+						transition: "opacity 500ms ease 600ms",
+					}}
+				>
+					<div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: "#10b981" }} />
+					<span className="text-[9px] font-bold" style={{ color: "#10b981" }}>Live</span>
+				</div>
+			</div>
+			<div
+				className="flex items-baseline gap-1 mb-4"
+				style={{
+					opacity: drawn ? 1 : 0,
+					transition: "opacity 600ms ease 300ms",
+				}}
+			>
+				<span className="text-xl font-extrabold tracking-tighter tabular-nums" style={{ color: "#051229" }}>
+					{chart.metric}
+				</span>
+			</div>
+			<div className="flex items-end justify-between gap-2 h-20 mb-2">
+				{chart.bars.map((val, i) => {
+					const pct = (val / maxH) * 100;
+					const isMax = val === maxH;
+					return (
+						<div key={i} className="flex-1 flex flex-col items-center gap-1.5">
+							<div className="w-full h-20 flex items-end">
+								<div
+									className="w-full rounded-md"
+									style={{
+										height: drawn ? `${pct}%` : "4%",
+										background: isMax
+											? "linear-gradient(180deg, #0475FF 0%, #3b82f6 100%)"
+											: "linear-gradient(180deg, #e2e8f0 0%, #cbd5e1 100%)",
+										transition: `height ${CHART_DRAW}ms ease-out ${i * 70}ms`,
+									}}
+								/>
+							</div>
+							<span className="text-[7px] font-bold uppercase" style={{ color: "#94a3b8" }}>
+								{CHART_LABELS[i]}
+							</span>
+						</div>
+					);
+				})}
+			</div>
+		</div>
+	);
+}
+
 // ─── Ecosystem Lightbox ──────────────────────────────────────────────────────
 
 function EcosystemLightbox({ node, onClose }) {
@@ -352,6 +438,16 @@ function EcosystemLightbox({ node, onClose }) {
 						{node.detail}
 					</p>
 
+					{node.chart && (
+						<div className="mt-5">
+							<ModalChart chart={node.chart} />
+						</div>
+					)}
+
+					<div className="mt-5 [&_.tj-primary-btn]:w-full">
+						<QuoteButton />
+					</div>
+
 					{node.proprietary && (
 						<div
 							className="mt-5 inline-flex items-center gap-2 px-3.5 py-2 rounded-full"
@@ -396,10 +492,10 @@ function NodeColumn({ nodes, side, visible, hovered, onEnter, onLeave, onClick, 
 				return (
 					<div
 						key={n.title}
-						className={`relative rounded-xl overflow-hidden transition-all duration-500 cursor-pointer flex-1 group border ${
+						className={`relative rounded-xl overflow-hidden transition-all duration-500 cursor-pointer flex-1 group border backdrop-blur-xl ${
 							active
-								? `shadow-lg shadow-blue-500/10 scale-[1.03] border-blue-200/80 ${isLeft ? "-translate-x-2" : "translate-x-2"}`
-								: "border-slate-200/80 shadow-sm hover:shadow-md hover:border-blue-100/60 hover:scale-[1.02]"
+								? `shadow-lg shadow-blue-500/10 scale-[1.03] border-white/40 ${isLeft ? "-translate-x-2" : "translate-x-2"}`
+								: "border-white/30 shadow-sm hover:shadow-md hover:border-white/50 hover:scale-[1.02]"
 						} ${
 							visible
 								? "opacity-100 translate-x-0"
@@ -418,7 +514,7 @@ function NodeColumn({ nodes, side, visible, hovered, onEnter, onLeave, onClick, 
 							className={`absolute ${isLeft ? "left-0" : "right-0"} top-0 bottom-0 w-[3px] transition-all duration-500 ${active ? "opacity-100" : "opacity-0 group-hover:opacity-40"}`}
 							style={{ background: "linear-gradient(180deg, #0233C5 0%, #3b82f6 100%)" }}
 						/>
-						<div className="relative px-4 py-3 xl:px-5 xl:py-4 flex flex-col justify-center h-full transition-colors duration-300 bg-white">
+						<div className="relative px-4 py-3 xl:px-5 xl:py-4 flex flex-col justify-center h-full transition-colors duration-300" style={{ background: "rgba(255,255,255,0.55)" }}>
 							<div className="flex items-center gap-2.5 mb-1">
 								<div className={`flex items-center justify-center w-7 h-7 rounded-lg transition-all duration-500 ${
 									active
@@ -590,8 +686,8 @@ function MobileEcosystem({ visible, onClick }) {
 					return (
 						<div
 							key={n.title}
-							className={`relative rounded-lg sm:rounded-xl overflow-hidden border bg-white shadow-sm transition-all duration-300 cursor-pointer ${
-								isExpanded ? "border-blue-200 shadow-md" : "border-slate-200/80"
+							className={`relative rounded-lg sm:rounded-xl overflow-hidden border backdrop-blur-xl shadow-sm transition-all duration-300 cursor-pointer ${
+								isExpanded ? "border-white/40 shadow-md" : "border-white/30"
 							} ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
 							style={{ transitionDelay: visible ? `${i * 60}ms` : "0ms" }}
 						>
@@ -599,7 +695,7 @@ function MobileEcosystem({ visible, onClick }) {
 								className={`absolute left-0 top-0 bottom-0 w-[3px] transition-opacity duration-300 ${isExpanded ? "opacity-100" : "opacity-0"}`}
 								style={{ background: "linear-gradient(180deg, #0233C5 0%, #3b82f688 100%)" }}
 							/>
-							<div className="p-2.5 sm:p-4 bg-white" onClick={() => handleTap(i)}>
+							<div className="p-2.5 sm:p-4" style={{ background: "rgba(255,255,255,0.55)" }} onClick={() => handleTap(i)}>
 								<div className="flex items-center gap-2 sm:gap-2.5">
 									<div className={`flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-lg transition-all duration-300 flex-shrink-0 ${
 										isExpanded ? "bg-blue-600 text-white shadow-md shadow-blue-500/20" : "bg-blue-50 text-blue-600"
@@ -647,6 +743,231 @@ function MobileEcosystem({ visible, onClick }) {
 }
 
 // ─── Main Export ─────────────────────────────────────────────────────────────
+
+// ─── Background Animated Icons ──────────────────────────────────────────────
+
+const ICON_DEFS = [
+	{
+		id: "shopping", label: "Shopping", x: 0.26, y: 0.14, delay: 0.4, size: 56,
+		color: "#0475FF", bg: "rgba(4,117,255,0.08)",
+		path: "M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0",
+	},
+	{
+		id: "social", label: "Social", x: 0.68, y: 0.10, delay: 0.7, size: 52,
+		color: "#3b82f6", bg: "rgba(59,130,246,0.08)",
+		path: "M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 01-3.46 0",
+		path2: "M4 4l16 16",
+	},
+	{
+		id: "marketing", label: "Marketing", x: 0.32, y: 0.48, delay: 1.0, size: 50,
+		color: "#0475FF", bg: "rgba(4,117,255,0.08)",
+		path: "M22 12h-4l-3 9L9 3l-3 9H2",
+	},
+	{
+		id: "email", label: "Email", x: 0.66, y: 0.46, delay: 1.3, size: 48,
+		color: "#3b82f6", bg: "rgba(59,130,246,0.08)",
+		path: "M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z",
+		path2: "M22 6l-10 7L2 6",
+	},
+	{
+		id: "globe", label: "Internet", x: 0.30, y: 0.74, delay: 0.9, size: 54,
+		color: "#0475FF", bg: "rgba(4,117,255,0.08)",
+		path: "M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z",
+		path2: "M2 12h20M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10A15.3 15.3 0 0112 2z",
+	},
+	{
+		id: "business", label: "Business", x: 0.64, y: 0.76, delay: 1.5, size: 50,
+		color: "#3b82f6", bg: "rgba(59,130,246,0.08)",
+		path: "M20 7H4a2 2 0 00-2 2v10a2 2 0 002 2h16a2 2 0 002-2V9a2 2 0 00-2-2z",
+		path2: "M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16",
+	},
+	{
+		id: "target", label: "Targeting", x: 0.48, y: 0.90, delay: 1.7, size: 52,
+		color: "#0475FF", bg: "rgba(4,117,255,0.08)",
+		path: "M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z",
+		path2: "M12 18a6 6 0 100-12 6 6 0 000 12zM12 14a2 2 0 100-4 2 2 0 000 4z",
+	},
+	{
+		id: "megaphone", label: "Ads", x: 0.40, y: 0.32, delay: 0.6, size: 46,
+		color: "#3b82f6", bg: "rgba(59,130,246,0.08)",
+		path: "M3 11l18-5v12L3 13v-2zM11.6 16.8a.5.5 0 01.4.2l2 3a.5.5 0 01-.4.8H9.4a.5.5 0 01-.4-.8l2-3a.5.5 0 01.6-.2z",
+	},
+	{
+		id: "cursor", label: "Clicks", x: 0.60, y: 0.30, delay: 1.1, size: 44,
+		color: "#0475FF", bg: "rgba(4,117,255,0.08)",
+		path: "M4 4l7.07 17 2.51-7.39L21 11.07z",
+	},
+];
+
+function EcoBgCharts({ visible }) {
+	/*
+	 * Depth model — XY plane perspective.
+	 * depth(x,y) = y×0.7 + centerProximity(x)×0.3
+	 * depth ∈ [0,1], 0 = furthest, 1 = nearest.
+	 */
+	const computeDepth = (x, y) => {
+		const centerProximity = 1 - Math.abs(x - 0.5) * 2;
+		return Math.min(1, Math.max(0, y * 0.7 + centerProximity * 0.3));
+	};
+
+	const depthVisuals = (depth, delay) => {
+		const scale = 0.65 + depth * 0.43;
+		const opacity = 0.22 + depth * 0.40;
+		const brightness = (0.70 + depth * 0.40).toFixed(2);
+		return {
+			position: "absolute",
+			opacity: visible ? opacity : 0,
+			transform: `translate(-50%, -50%) scale(${scale.toFixed(3)})`,
+			transformOrigin: "center center",
+			filter: `brightness(${brightness})`,
+			transition: `opacity 1.2s ease ${delay}s, transform 0.8s ease ${delay}s`,
+			zIndex: Math.round(depth * 10),
+		};
+	};
+
+	const RINGS = [
+		{ x: 0.30, y: 0.12, size: 120, delay: 0 },
+		{ x: 0.32, y: 0.55, size: 90, delay: 1.2 },
+		{ x: 0.36, y: 0.80, size: 100, delay: 2.4 },
+		{ x: 0.70, y: 0.10, size: 110, delay: 0.6 },
+		{ x: 0.66, y: 0.52, size: 80, delay: 1.8 },
+		{ x: 0.68, y: 0.84, size: 95, delay: 3.0 },
+		{ x: 0.40, y: 0.35, size: 70, delay: 2.0 },
+		{ x: 0.62, y: 0.28, size: 75, delay: 0.8 },
+	];
+
+	const enriched = ICON_DEFS
+		.map((c) => ({ ...c, depth: computeDepth(c.x, c.y) }))
+		.sort((a, b) => a.depth - b.depth);
+
+	return (
+		<div className="absolute inset-0 overflow-hidden pointer-events-none z-[0]">
+			{/* Pulsing rings — depth-sorted */}
+			{RINGS
+				.map((r) => ({ ...r, depth: computeDepth(r.x, r.y) }))
+				.sort((a, b) => a.depth - b.depth)
+				.map((ring, i) => {
+					const ringScale = 0.55 + ring.depth * 0.55;
+					const ringOpacity = 0.12 + ring.depth * 0.28;
+					const dotSize = 3 + ring.depth * 4;
+					return (
+						<div
+							key={`pulse-${i}`}
+							className="absolute"
+							style={{
+								top: `${ring.y * 100}%`,
+								left: `${ring.x * 100}%`,
+								width: ring.size * ringScale,
+								height: ring.size * ringScale,
+								transform: "translate(-50%, -50%)",
+								opacity: visible ? ringOpacity : 0,
+								transition: `opacity 1s ease ${ring.delay + 0.5}s`,
+								zIndex: Math.round(ring.depth * 10),
+								filter: `brightness(${(0.7 + ring.depth * 0.35).toFixed(2)})`,
+							}}
+						>
+							{[0, 1, 2].map((r) => (
+								<div
+									key={r}
+									className="absolute inset-0 rounded-full border border-blue-400/20"
+									style={{
+										animation: visible ? `ecoPulseRing 3s ease-out ${ring.delay + r * 0.8}s infinite` : "none",
+										borderWidth: ring.depth > 0.5 ? 1.5 : 1,
+									}}
+								/>
+							))}
+							<div
+								className="absolute rounded-full"
+								style={{
+									width: dotSize,
+									height: dotSize,
+									top: "50%",
+									left: "50%",
+									transform: "translate(-50%, -50%)",
+									backgroundColor: "#0475FF",
+									opacity: 0.25 + ring.depth * 0.25,
+								}}
+							/>
+						</div>
+					);
+				})}
+
+			{/* Animated icon elements — depth-sorted */}
+			{enriched.map((icon) => {
+				const dv = depthVisuals(icon.depth, icon.delay);
+				const iconPx = icon.size * (0.4 + icon.depth * 0.15);
+				const strokeLen = 200;
+				return (
+					<div
+						key={icon.id}
+						style={{
+							...dv,
+							top: `${icon.y * 100}%`,
+							left: `${icon.x * 100}%`,
+						}}
+						className="flex flex-col items-center gap-1.5"
+					>
+						<div
+							className="rounded-2xl flex items-center justify-center"
+							style={{
+								width: icon.size,
+								height: icon.size,
+								backgroundColor: icon.bg,
+								border: `1px solid ${icon.color}15`,
+								animation: visible
+									? `ecoIconFloat ${3 + icon.depth * 2}s ease-in-out ${icon.delay}s infinite`
+									: "none",
+							}}
+						>
+							<svg
+								width={iconPx}
+								height={iconPx}
+								viewBox="0 0 24 24"
+								fill="none"
+								stroke={icon.color}
+								strokeWidth="1.5"
+								strokeLinecap="round"
+								strokeLinejoin="round"
+							>
+								<path
+									d={icon.path}
+									strokeDasharray={strokeLen}
+									strokeDashoffset={visible ? "0" : String(strokeLen)}
+									style={{ transition: `stroke-dashoffset 1.6s ease-out ${icon.delay + 0.3}s` }}
+								/>
+								{icon.path2 && (
+									<path
+										d={icon.path2}
+										strokeDasharray={strokeLen}
+										strokeDashoffset={visible ? "0" : String(strokeLen)}
+										style={{ transition: `stroke-dashoffset 1.6s ease-out ${icon.delay + 0.6}s` }}
+									/>
+								)}
+							</svg>
+						</div>
+						<span
+							className="text-[8px] font-bold uppercase tracking-wider"
+							style={{
+								color: icon.color,
+								opacity: visible ? 0.6 : 0,
+								transition: `opacity 0.8s ease ${icon.delay + 1}s`,
+							}}
+						>
+							{icon.label}
+						</span>
+					</div>
+				);
+			})}
+
+			<style>{`
+				@keyframes ecoIconFloat {
+					0%, 100% { transform: translateY(0); }
+					50% { transform: translateY(-6px); }
+				}
+			`}</style>
+		</div>
+	);
+}
 
 export default function Ecosystem() {
 	const { ref, visible } = useScrollReveal(0);
@@ -701,6 +1022,7 @@ export default function Ecosystem() {
 			</div>
 
 			<div className="relative z-10">
+				<EcoBgCharts visible={visible} />
 				<DesktopEcosystem visible={visible} hovered={activeIdx} onEnter={handleEnter} onLeave={handleLeave} onClick={handleClick} />
 				<MobileEcosystem visible={visible} onClick={handleClick} />
 			</div>
@@ -733,6 +1055,10 @@ export default function Ecosystem() {
 				@keyframes ecoRipplePulse {
 					0% { transform: translate(-50%, -50%) scale(1); }
 					100% { transform: translate(-50%, -50%) scale(1.03); }
+				}
+				@keyframes ecoPulseRing {
+					0% { transform: scale(0.3); opacity: 0.6; }
+					100% { transform: scale(1); opacity: 0; }
 				}
 			`}</style>
 		</section>

@@ -1,4 +1,4 @@
-import ButtonPrimary from "@/components/shared/buttons/ButtonPrimary";
+import QuoteButton from "@/components/shared/buttons/QuoteButton";
 
 const About12 = () => {
 	return (
@@ -34,7 +34,7 @@ const About12 = () => {
 							className="history-btn mt-30 wow fadeInUp"
 							data-wow-delay="0.5s"
 						>
-							<ButtonPrimary text={"Learn more"} url={"/about"} />
+							<QuoteButton />
 						</div>
 					</div>
 				</div>

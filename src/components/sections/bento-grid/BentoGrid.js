@@ -626,7 +626,7 @@ function DashFeedCard() {
 
 export default function BentoGrid() {
 	return (
-		<section className="pt-10 pb-16 section-px" style={{ backgroundColor: "#F8FAFC" }}>
+		<section className="pt-10 pb-16 section-px" style={{ backgroundColor: "#ffffff" }}>
 			<div className="mx-auto">
 				<div className="sec-heading mb-10 sm:mb-14 text-center">
 					<h2 className="sec-title text-anim">

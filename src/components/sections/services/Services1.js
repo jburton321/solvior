@@ -1,13 +1,15 @@
 "use client";
 import ServiceCard1 from "@/components/shared/cards/ServiceCard1";
+import ButtonPrimary from "@/components/shared/buttons/ButtonPrimary";
 import getALlServices from "@/libs/getALlServices";
 import tjStackAnimation from "@/libs/tjStackAnimation";
 import { useGSAP } from "@gsap/react";
-import { useRef } from "react";
+import { useMemo, useRef } from "react";
 
 const Services1 = () => {
 	const animContainerRef = useRef();
-	const services = getALlServices();
+	const allServices = getALlServices();
+	const services = useMemo(() => (allServices?.length ? allServices.slice(0, 3) : []), [allServices]);
 	useGSAP(
 		context => {
 			tjStackAnimation(".service-stack");
@@ -52,16 +54,17 @@ const Services1 = () => {
 				<div className="row">
 					<div className="col-12">
 						<div className="service-wrapper">
-							{services?.length
-								? services?.map((service, idx) => (
-										<ServiceCard1
-											key={idx}
-											service={service}
-											idx={idx}
-											lastItem={services?.length - 1}
-										/>
-								  ))
-								: ""}
+							{services.map((service, idx) => (
+								<ServiceCard1
+									key={idx}
+									service={service}
+									idx={idx}
+									lastItem={services.length - 1}
+								/>
+							))}
+						</div>
+						<div className="flex justify-center mt-12">
+							<ButtonPrimary text="View All Services" url="/services" />
 						</div>
 					</div>
 				</div>

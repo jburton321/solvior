@@ -783,6 +783,34 @@
 			color: var(--tj-color-theme-primary);
 		}
 	}
+
+	&--explore {
+		color: #000;
+		.header_search__icon {
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			width: 36px;
+			height: 36px;
+			border-radius: 50%;
+			background: rgba(255, 255, 255, 0.4);
+			backdrop-filter: blur(8px);
+			-webkit-backdrop-filter: blur(8px);
+			i {
+				color: #000;
+				font-size: 16px;
+			}
+		}
+		&:hover {
+			color: var(--tj-color-theme-primary);
+			.header_search__icon {
+				background: rgba(4, 117, 255, 0.15);
+				i {
+					color: var(--tj-color-theme-primary);
+				}
+			}
+		}
+	}
 }
 .menu_btn {
 	display: inline-flex;

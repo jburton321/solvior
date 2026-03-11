@@ -1,16 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import ButtonPrimary from "../buttons/ButtonPrimary";
+import QuoteButton from "../buttons/QuoteButton";
 
 const ServiceCard1 = ({ service, idx, lastItem }) => {
 	const { title, desc, id, totalProject, img, svg } = service || {};
 	return (
 		<div className={`service-item ${idx < lastItem ? "service-stack" : ""}`}>
 			<div className="service-content">
-				<div className="service-number">
-					<span className="active">1</span>
-					<span>/{idx + 1}</span>
-				</div>
 				<div className="service-text">
 					<div className="service-icons">
 						<Image
@@ -26,11 +22,7 @@ const ServiceCard1 = ({ service, idx, lastItem }) => {
 					<div className="desc">
 						<p>{desc}</p>
 					</div>
-					<ButtonPrimary
-						text={"Get started"}
-						url={`/services/${id}`}
-						className={"service-btn"}
-					/>
+					<QuoteButton className="service-btn" />
 				</div>
 			</div>
 			<div className="service-images hover:shine">

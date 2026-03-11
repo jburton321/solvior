@@ -106,12 +106,6 @@
 						"path": "/careers/1",
 						"badge": null
 					},
-					{
-						"id": 7,
-						"name": "Pricing Plan",
-						"path": "/pricing-plan",
-						"badge": null
-					},
 					{ "id": 8, "name": "Feedbacks", "path": "#", "badge": null },
 					{ "id": 9, "name": "Faq", "path": "/faq", "badge": null },
 					{ "id": 10, "name": "Conatct", "path": "/contact", "badge": null }

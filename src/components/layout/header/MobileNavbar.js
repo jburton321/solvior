@@ -1,4 +1,5 @@
 import ButtonPrimary from "@/components/shared/buttons/ButtonPrimary";
+import QuoteButton from "@/components/shared/buttons/QuoteButton";
 import getNavItems from "@/libs/getNavItems";
 import Image from "next/image";
 import Link from "next/link";
@@ -161,11 +162,7 @@ const MobileNavbar = () => {
 														</p>
 													</div>
 													<div className="cta-btn">
-														<ButtonPrimary
-															text={"Get in touch"}
-															url={"/contact"}
-															className={"white-btn"}
-														/>
+														<QuoteButton className="white-btn" />
 
 														<Image
 															width={115}
@@ -296,11 +293,7 @@ const MobileNavbar = () => {
 														</p>
 													</div>
 													<div className="cta-btn">
-														<ButtonPrimary
-															text={"Get in touch"}
-															url={"/contact"}
-															className={"white-btn"}
-														/>
+														<QuoteButton className="white-btn" />
 
 														<Image
 															width={115}
@@ -431,11 +424,7 @@ const MobileNavbar = () => {
 														</p>
 													</div>
 													<div className="cta-btn">
-														<ButtonPrimary
-															text={"Get in touch"}
-															url={"/contact"}
-															className={"white-btn"}
-														/>
+														<QuoteButton className="white-btn" />
 
 														<Image
 															width={115}

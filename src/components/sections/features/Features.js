@@ -1,6 +1,7 @@
 "use client";
 
 import FeatureCard from "@/components/shared/cards/FeatureCard";
+import ButtonPrimary from "@/components/shared/buttons/ButtonPrimary";
 import getSolutions from "@/libs/getSolutions";
 import tjSvgAnimation from "@/libs/tjSvgAnimation";
 import { useGSAP } from "@gsap/react";
@@ -74,7 +75,8 @@ const Features = ({ type }) => {
 		{ title: "Integrate seamlessly", desc: "We integrate with virtually every platform, system and interface to get you live and start delivering results.", icon: ICON_INTEGRATE },
 	];
 
-	const features = featuresFromSolutions ?? featuresFallback;
+	const allFeatures = featuresFromSolutions ?? featuresFallback;
+	const features = isHome1 ? allFeatures.slice(0, 4) : allFeatures;
 
 	return (
 		<section
@@ -120,6 +122,12 @@ const Features = ({ type }) => {
 							</div>
 						))}
 					</div>
+
+					{isHome1 && (
+						<div className="flex justify-center mt-12">
+							<ButtonPrimary text="View All Solutions" url="/solutions" />
+						</div>
+					)}
 				</div>
 			</div>
 		</section>

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { TrendingUp, Zap, BarChart3, Activity, Target } from "lucide-react";
 import ButtonPrimary from "@/components/shared/buttons/ButtonPrimary";
+import QuoteButton from "@/components/shared/buttons/QuoteButton";
 import FlipWords from "./FlipWords";
 import { IncreaseCard, GrowthLineChart, BusinessBarChart, MetricPill } from "./HeroChartCards";
 
@@ -56,7 +57,7 @@ export default function HeroAlt() {
 					className={`flex flex-col sm:flex-row justify-center gap-4 transition-all duration-1000 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
 					style={{ transitionDelay: "600ms" }}
 				>
-					<ButtonPrimary text="Get started" url="/contact" />
+					<QuoteButton />
 					<ButtonPrimary text="Creative Collection" url="/portfolios" className="white-btn" />
 				</div>
 			</div>

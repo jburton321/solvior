@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import ButtonPrimary from "@/components/shared/buttons/ButtonPrimary";
 import AnimatedOneLogo from "@/components/shared/AnimatedOneLogo";
 
 // ─── Founders (sticky video reveal with shrinking portal) ───────────────────
@@ -87,9 +86,6 @@ function Founders() {
 						Most agencies are black boxes. Faceless vendors running your budget on autopilot.
 					</p>
 
-					<div className="eclipse-cta-row">
-						<ButtonPrimary text="Request your strategy session" url="/contact" />
-					</div>
 				</div>
 			</div>
 		</section>
@@ -197,15 +193,6 @@ function FoundersStory() {
 						</div>
 					</div>
 
-					<div
-						className="mt-10 flex justify-start transition-all duration-1000 ease-out delay-700"
-						style={{
-							opacity: visible ? 1 : 0,
-							transform: visible ? "translateY(0)" : "translateY(20px)",
-						}}
-					>
-						<ButtonPrimary text="Request your strategy session" url="/contact" />
-					</div>
 				</div>
 			</div>
 		</section>

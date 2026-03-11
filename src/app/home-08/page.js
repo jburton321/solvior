@@ -7,7 +7,6 @@ import Cta7 from "@/components/sections/cta/Cta7";
 import Features6 from "@/components/sections/features/Features6";
 import Hero8 from "@/components/sections/heros/Hero8";
 import Portfolios8 from "@/components/sections/portfolios/Portfolios8";
-import PricingPlan3 from "@/components/sections/pricing-plan/PricingPlan3";
 import Process4 from "@/components/sections/process/Process4";
 import Services8 from "@/components/sections/services/Services8";
 import Team5 from "@/components/sections/teams/Team5";
@@ -29,7 +28,6 @@ export default function Home8() {
 				<Services8 />
 				<Process4 />
 				<Cta6 />
-				<PricingPlan3 />
 				<Portfolios8 />
 				<Team5 />
 				<Testimonials7 />
