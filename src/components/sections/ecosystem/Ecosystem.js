@@ -586,63 +586,74 @@ function MobileEcosystem({ visible, onClick }) {
 	}, []);
 
 	return (
-		<div className="lg:hidden relative">
-			{/* Spacer: hub is positioned at section center via absolute */}
-			<div className="h-[120px] sm:h-[170px] mb-6 sm:mb-10" aria-hidden="true" />
-
-			<div className="flex flex-col gap-1 sm:grid sm:grid-cols-2 sm:gap-2 relative z-[2]">
+		<div className="relative">
+			<div className="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3 relative z-[2]">
 				{ALL_NODES.map((n, i) => {
 					const isExpanded = expandedIdx === i;
 
 					return (
 						<div
 							key={n.title}
-							className={`relative rounded-lg sm:rounded-xl overflow-hidden border backdrop-blur-xl shadow-sm transition-all duration-300 cursor-pointer ${
+							className={`relative rounded-xl overflow-hidden border backdrop-blur-md shadow-sm transition-all duration-300 ${
 								isExpanded ? "border-white/40 shadow-md" : "border-white/30"
 							} ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-6"}`}
-							style={{ transitionDelay: visible ? `${i * 60}ms` : "0ms" }}
+							style={{ transitionDelay: visible ? `${i * 50}ms` : "0ms" }}
 						>
 							<div
 								className={`absolute left-0 top-0 bottom-0 w-[3px] transition-opacity duration-300 ${isExpanded ? "opacity-100" : "opacity-0"}`}
 								style={{ background: "linear-gradient(180deg, #0233C5 0%, #3b82f688 100%)" }}
 							/>
-							<div className="p-2.5 sm:p-4" style={{ background: "rgba(255,255,255,0.35)" }} onClick={() => handleTap(i)}>
-								<div className="flex items-center gap-2 sm:gap-2.5">
-									<div className={`flex items-center justify-center w-6 h-6 sm:w-7 sm:h-7 rounded-lg transition-all duration-300 flex-shrink-0 ${
-										isExpanded ? "bg-blue-600 text-white shadow-md shadow-blue-500/20" : "bg-blue-50 text-blue-600"
-									}`}>
-										{n.icon}
-									</div>
-									<h3 className="font-semibold text-[11px] sm:text-xs text-slate-900 uppercase leading-tight flex-1">
-										{n.title}
-									</h3>
-									<ChevronDown
-										size={16}
-										className={`text-slate-400 transition-transform duration-300 flex-shrink-0 sm:hidden ${isExpanded ? "rotate-180" : ""}`}
-									/>
-								</div>
-								<p className="hidden sm:block text-slate-500 text-xs leading-relaxed mt-1.5">{n.text}</p>
-							</div>
-
-							<div
-								className="sm:hidden overflow-hidden"
-								style={{
-									maxHeight: isExpanded ? "300px" : "0px",
-									opacity: isExpanded ? 1 : 0,
-									transition: "max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease",
-								}}
-							>
-								<div className="px-2.5 pb-3 pt-1 space-y-2">
-									<p className="text-slate-500 text-xs leading-relaxed">{n.detail}</p>
-									{n.proprietary && (
-										<div className="flex items-center gap-2">
-											<span className="relative flex h-2 w-2">
-												<span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0ea5e9] opacity-75" />
-												<span className="relative inline-flex rounded-full h-2 w-2 bg-[#0ea5e9]" />
-											</span>
-											<span className="text-[10px] font-black uppercase text-blue-600">Proprietary Technology</span>
+							<div className="p-3 sm:p-4" style={{ background: "rgba(255,255,255,0.35)" }}>
+								<button
+									type="button"
+									className="w-full text-left"
+									onClick={() => handleTap(i)}
+								>
+									<div className="flex items-center gap-2.5 sm:gap-3">
+										<div className={`flex items-center justify-center w-7 h-7 sm:w-8 sm:h-8 rounded-lg transition-all duration-300 flex-shrink-0 ${
+											isExpanded ? "bg-blue-600 text-white shadow-md shadow-blue-500/20" : "bg-blue-50 text-blue-600"
+										}`}>
+											{n.icon}
 										</div>
-									)}
+										<h3 className="font-semibold text-xs sm:text-[13px] text-slate-900 uppercase leading-tight flex-1">
+											{n.title}
+										</h3>
+										<ChevronDown
+											size={18}
+											className={`text-slate-400 transition-transform duration-300 flex-shrink-0 ${isExpanded ? "rotate-180" : ""}`}
+										/>
+									</div>
+									<p className="text-slate-500 text-xs leading-relaxed mt-2 sm:mt-2.5">{n.text}</p>
+								</button>
+
+								{/* Expanded: full detail + CTA to open lightbox */}
+								<div
+									className="overflow-hidden"
+									style={{
+										maxHeight: isExpanded ? "400px" : "0px",
+										opacity: isExpanded ? 1 : 0,
+										transition: "max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease",
+									}}
+								>
+									<div className="pt-3 mt-3 border-t border-slate-200/60 space-y-3">
+										<p className="text-slate-600 text-sm leading-relaxed">{n.detail}</p>
+										{n.proprietary && (
+											<div className="flex items-center gap-2">
+												<span className="relative flex h-2 w-2">
+													<span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#0ea5e9] opacity-75" />
+													<span className="relative inline-flex rounded-full h-2 w-2 bg-[#0ea5e9]" />
+												</span>
+												<span className="text-[10px] font-black uppercase text-blue-600">Proprietary Technology</span>
+											</div>
+										)}
+										<button
+											type="button"
+											onClick={(e) => { e.stopPropagation(); onClick(i); }}
+											className="text-xs font-bold text-blue-600 hover:text-blue-700 uppercase tracking-wide"
+										>
+											View full details →
+										</button>
+									</div>
 								</div>
 							</div>
 						</div>
@@ -763,8 +774,8 @@ export default function Ecosystem() {
 	}, []);
 
 	return (
-		<section id="ecosystem" ref={ref} className="relative py-16 overflow-hidden section-px" style={{ backgroundColor: "#F8FAFC" }}>
-			{/* Ripple: full section background, center at (50%, 50%) */}
+		<section id="ecosystem" ref={ref} className="relative py-12 sm:py-16 overflow-hidden section-px" style={{ backgroundColor: "#F8FAFC" }}>
+			{/* Ripple: full section background */}
 			<div className={`absolute inset-0 overflow-hidden pointer-events-none transition-opacity duration-1000 ${visible ? "opacity-100" : "opacity-0"}`} style={{ zIndex: 0 }}>
 				<WebGLRipple visible={visible} />
 			</div>
@@ -774,7 +785,8 @@ export default function Ecosystem() {
 				<div className="absolute top-0 right-0 w-[300px] h-[300px] bg-blue-500/[0.015] rounded-full blur-[100px]" />
 			</div>
 
-			<div className={`relative z-20 flex flex-col items-center justify-center text-center pointer-events-none transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
+			{/* Header — always in flow */}
+			<div className={`relative z-20 text-center pointer-events-none transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
 				<div className="sec-heading mb-0">
 					<span className="sub-title">Your Channels, Fully Managed</span>
 					<h2 className="sec-title text-anim">
@@ -783,29 +795,40 @@ export default function Ecosystem() {
 						<span>Make Decisions, We&apos;re There.</span>
 					</h2>
 				</div>
-				<div className="min-h-[480px] lg:min-h-[520px]" aria-hidden="true" />
 			</div>
 
-			{/* Ecosystem: centered at section center (50%, 50%) = ripple center */}
-			<div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full min-h-[480px] z-10 section-px">
-				<div className="relative w-full h-full min-h-[480px]">
-					<EcoBgCharts visible={visible} />
-					<DesktopEcosystem visible={visible} hovered={activeIdx} onEnter={handleEnter} onLeave={handleLeave} onClick={handleClick} />
-					<MobileEcosystem visible={visible} onClick={handleClick} />
-					{/* Hub: center of wrapper = section center = ripple center */}
-					<div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 flex items-center justify-center pointer-events-none">
-						<div className="hidden lg:flex flex-col items-center justify-center text-center w-[220px] h-[220px] xl:w-[260px] xl:h-[260px] rounded-full border border-white/30 backdrop-blur-md shadow-sm" style={{ background: "rgba(255,255,255,0.35)" }}>
-							<EcosystemBot hovered={activeIdx} className="w-[90px] xl:w-[110px] mb-2" />
-							<span className="text-[8px] font-black uppercase text-blue-600">Fully Managed</span>
-							<h4 className="text-lg xl:text-xl font-bold uppercase tracking-tight text-slate-900 mt-1.5 leading-tight">CHANNELS</h4>
-						</div>
-						<div className="lg:hidden flex flex-col items-center justify-center text-center w-[120px] h-[120px] sm:w-[170px] sm:h-[170px] rounded-full border border-white/30 backdrop-blur-md shadow-sm" style={{ background: "rgba(255,255,255,0.35)" }}>
-							<EcosystemBot hovered={null} className="w-[50px] sm:w-[75px] mb-1.5" />
-							<span className="text-[7px] font-black uppercase text-blue-600">Fully Managed</span>
-							<h4 className="text-sm sm:text-base font-bold uppercase tracking-tight text-slate-900 mt-1 leading-tight">CHANNELS</h4>
+			{/* Desktop: centered layout with fixed height */}
+			<div className="hidden lg:block relative z-10">
+				<div className="min-h-[520px] flex items-center justify-center" aria-hidden="true" />
+				<div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-full min-h-[480px] section-px">
+					<div className="relative w-full h-full min-h-[480px]">
+						<EcoBgCharts visible={visible} />
+						<DesktopEcosystem visible={visible} hovered={activeIdx} onEnter={handleEnter} onLeave={handleLeave} onClick={handleClick} />
+						<div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20 flex items-center justify-center pointer-events-none">
+							<div className="flex flex-col items-center justify-center text-center w-[220px] h-[220px] xl:w-[260px] xl:h-[260px] rounded-full border border-white/30 backdrop-blur-md shadow-sm" style={{ background: "rgba(255,255,255,0.35)" }}>
+								<EcosystemBot hovered={activeIdx} className="w-[90px] xl:w-[110px] mb-2" />
+								<span className="text-[8px] font-black uppercase text-blue-600">Fully Managed</span>
+								<h4 className="text-lg xl:text-xl font-bold uppercase tracking-tight text-slate-900 mt-1.5 leading-tight">CHANNELS</h4>
+							</div>
 						</div>
 					</div>
 				</div>
+			</div>
+
+			{/* Mobile: flow-based layout — hub then cards, section grows with content */}
+			<div className="lg:hidden relative z-10 pt-6 sm:pt-8 pb-4">
+				<div className="hidden sm:block">
+					<EcoBgCharts visible={visible} />
+				</div>
+				{/* Hub */}
+				<div className="flex justify-center mb-6 sm:mb-8">
+					<div className="flex flex-col items-center justify-center text-center w-[120px] h-[120px] sm:w-[170px] sm:h-[170px] rounded-full border border-white/30 backdrop-blur-md shadow-sm" style={{ background: "rgba(255,255,255,0.35)" }}>
+						<EcosystemBot hovered={null} className="w-[50px] sm:w-[75px] mb-1.5" />
+						<span className="text-[7px] font-black uppercase text-blue-600">Fully Managed</span>
+						<h4 className="text-sm sm:text-base font-bold uppercase tracking-tight text-slate-900 mt-1 leading-tight">CHANNELS</h4>
+					</div>
+				</div>
+				<MobileEcosystem visible={visible} onClick={handleClick} />
 			</div>
 
 			{lightboxIdx !== null && (

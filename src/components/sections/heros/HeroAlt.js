@@ -16,27 +16,27 @@ export default function HeroAlt() {
 	}, []);
 
 	return (
-		<section className="relative min-h-screen flex flex-col justify-center pt-40 sm:pt-48 pb-24 overflow-hidden font-body" style={{ backgroundColor: "#F8FAFC" }}>
+		<section className="relative min-h-[85vh] sm:min-h-screen flex flex-col justify-center pt-24 sm:pt-36 md:pt-40 lg:pt-48 pb-16 sm:pb-20 md:pb-24 overflow-hidden font-body" style={{ backgroundColor: "#F8FAFC" }}>
 			<div className="absolute inset-0 hero-alt-grid z-0 pointer-events-none" />
 
 			<div
-				className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[600px] rounded-full blur-[160px] opacity-20 pointer-events-none"
+				className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[900px] h-[400px] sm:h-[600px] rounded-full blur-[120px] sm:blur-[160px] opacity-20 pointer-events-none"
 				style={{ background: "radial-gradient(ellipse at center, rgba(8,145,178,0.3) 0%, rgba(6,182,212,0.1) 50%, transparent 80%)" }}
 			/>
 
-		<div className="max-w-5xl mx-auto text-center xl:text-left relative z-10 section-px" style={{ marginTop: "5px" }}>
+		<div className="max-w-5xl mx-auto text-center xl:text-left relative z-10 section-px pt-2 sm:pt-0">
 			<div
-					className={`font-heading text-body inline-flex items-center gap-2 font-bold mb-6 transition-all duration-1000 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+					className={`font-heading text-body inline-flex items-center gap-2 font-bold mb-4 sm:mb-6 transition-all duration-1000 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
 					style={{ color: "var(--tj-color-text-body)", transitionDelay: "100ms" }}
 				>
-					<span className="tracking-[0.2em] uppercase">
+					<span className="tracking-[0.15em] sm:tracking-[0.2em] uppercase text-sm sm:text-base">
 						All you need is <span className="font-black" style={{ color: "#0475FF" }}>ONE</span>
 					</span>
 				</div>
 
 				<h1
-					className={`liquid-header liquid-header--dark font-heading mb-8 transition-all duration-1000 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
-					style={{ transitionDelay: "200ms" }}
+					className={`liquid-header liquid-header--dark font-heading mb-5 sm:mb-8 transition-all duration-1000 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+					style={{ transitionDelay: "200ms", fontSize: "clamp(2rem, 8vw, 94px)" }}
 				>
 					<span className="black-bar">
 						Better{" "}
@@ -47,14 +47,14 @@ export default function HeroAlt() {
 				</h1>
 
 				<p
-					className={`font-body text-body max-w-2xl mx-auto xl:mx-0 mb-10 leading-relaxed transition-all duration-1000 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+					className={`font-body text-body max-w-2xl mx-auto xl:mx-0 mb-6 sm:mb-8 md:mb-10 text-sm sm:text-base leading-relaxed transition-all duration-1000 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
 					style={{ color: "var(--tj-color-text-body)", transitionDelay: "400ms" }}
 				>
 					More customers, lower costs, zero disruption. Our AI-powered MarTech, conversion-obsessed creative, and proprietary data intelligence work as one coordinated&nbsp;engine.
 				</p>
 
 				<div
-					className={`flex flex-col sm:flex-row justify-center gap-4 transition-all duration-1000 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+					className={`flex flex-col sm:flex-row justify-center gap-3 sm:gap-4 transition-all duration-1000 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
 					style={{ transitionDelay: "600ms" }}
 				>
 					<QuoteButton />
@@ -64,10 +64,10 @@ export default function HeroAlt() {
 
 			{/* Mobile chart cards */}
 			<div
-				className={`xl:hidden relative z-10 mt-16 section-px transition-all duration-1000 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+				className={`xl:hidden relative z-10 mt-8 sm:mt-12 md:mt-16 section-px transition-all duration-1000 ${mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
 				style={{ transitionDelay: "800ms" }}
 			>
-				<div className="flex flex-col sm:grid sm:grid-cols-2 gap-3 max-w-lg mx-auto sm:max-w-xl">
+				<div className="flex flex-col sm:grid sm:grid-cols-2 gap-2 sm:gap-3 max-w-lg mx-auto sm:max-w-xl">
 					<IncreaseCard />
 					<MetricPill />
 					<div className="sm:col-span-2">
