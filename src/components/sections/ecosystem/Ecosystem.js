@@ -774,7 +774,7 @@ export default function Ecosystem() {
 				<div className="absolute top-0 right-0 w-[300px] h-[300px] bg-blue-500/[0.015] rounded-full blur-[100px]" />
 			</div>
 
-			<div className={`relative z-20 flex flex-col items-center justify-center text-center transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
+			<div className={`relative z-20 flex flex-col items-center justify-center text-center pointer-events-none transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
 				<div className="sec-heading mb-0">
 					<span className="sub-title">Your Channels, Fully Managed</span>
 					<h2 className="sec-title text-anim">

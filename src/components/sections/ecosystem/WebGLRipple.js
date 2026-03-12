@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const VERTEX_SHADER = `
   attribute vec2 position;
@@ -80,16 +80,31 @@ function createShader(gl, type, source) {
 	return shader;
 }
 
+function getDPR() {
+	if (typeof window === "undefined") return 1;
+	const base = window.devicePixelRatio || 1;
+	const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+	return Math.min(base, isMobile ? 1.5 : 2);
+}
+
 export default function WebGLRipple({ visible = true }) {
 	const canvasRef = useRef(null);
 	const rafRef = useRef(null);
 	const startTimeRef = useRef(null);
+	const visibleRef = useRef(visible);
+	visibleRef.current = visible;
+
+	const [reduceMotion] = useState(() =>
+		typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches
+	);
 
 	useEffect(() => {
+		if (reduceMotion) return;
+
 		const canvas = canvasRef.current;
 		if (!canvas) return;
 
-		const gl = canvas.getContext("webgl", { alpha: false, antialias: true });
+		const gl = canvas.getContext("webgl", { alpha: false, antialias: false });
 		if (!gl) return;
 
 		const program = gl.createProgram();
@@ -108,7 +123,7 @@ export default function WebGLRipple({ visible = true }) {
 
 		const resize = () => {
 			const rect = canvas.getBoundingClientRect();
-			const dpr = Math.min(window.devicePixelRatio || 1, 2);
+			const dpr = getDPR();
 			const w = Math.floor(rect.width * dpr);
 			const h = Math.floor(rect.height * dpr);
 			if (canvas.width !== w || canvas.height !== h) {
@@ -119,13 +134,10 @@ export default function WebGLRipple({ visible = true }) {
 		};
 
 		const render = (timestamp) => {
+			if (!visibleRef.current) return;
+
 			if (!startTimeRef.current) startTimeRef.current = timestamp;
 			const time = (timestamp - startTimeRef.current) * 0.001;
-
-			if (!visible) {
-				rafRef.current = requestAnimationFrame(render);
-				return;
-			}
 
 			resize();
 
@@ -143,16 +155,19 @@ export default function WebGLRipple({ visible = true }) {
 			rafRef.current = requestAnimationFrame(render);
 		};
 
-		rafRef.current = requestAnimationFrame(render);
+		if (visible) {
+			rafRef.current = requestAnimationFrame(render);
+		}
 
 		const ro = new ResizeObserver(resize);
 		ro.observe(canvas);
+		resize();
 
 		return () => {
 			ro.disconnect();
 			cancelAnimationFrame(rafRef.current);
 		};
-	}, [visible]);
+	}, [visible, reduceMotion]);
 
 	return (
 		<canvas
