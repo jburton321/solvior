@@ -8,6 +8,11 @@
 	}
 }
 
+/* Mobile menu icon color */
+.hamburger_menu .mean-container a.meanmenu-reveal span {
+	background: #1874FD !important;
+}
+
 @media (max-width: 320px) {
 	.section-px {
 		padding-left: 1rem;
@@ -132,8 +137,10 @@ h1.liquid-header.liquid-header--dark.font-heading.mb-8.transition-all.duration-1
 	transition: filter 0.35s ease;
 }
 
-span.inline-block.overflow-hidden {
-	margin-bottom: 5px;
+@media (max-width: 767px) {
+	span.inline-block.overflow-hidden {
+		margin-bottom: 5px;
+	}
 }
 
 /* ─── FoundersReveal (reverse-eclipse) ─────────────────────────────────── */
