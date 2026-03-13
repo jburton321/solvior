@@ -6,14 +6,13 @@
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	min-height: 100vh;
-	padding: 20px;
+	padding: 32px 16px 48px;
 	box-sizing: border-box;
 }
 
 .ciq-agents-section .ciq-agents-inner {
 	width: 100%;
-	max-width: 1400px;
+	max-width: none;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -21,24 +20,26 @@
 
 .ciq-agents-section .sec-heading {
 	text-align: center;
+	margin-bottom: 1.25rem;
 }
 
 .ciq-agents-section .sec-title,
 .ciq-agents-section .sec-title span {
 	color: #0a0a0a;
 	text-align: center;
+	line-height: 1.35;
 }
 
 .ciq-agents-section .sec-title span.block {
-	white-space: nowrap;
+	white-space: normal;
 	display: block;
 }
 
 .ciq-agents-section .canvas {
 	display: grid;
 	grid-template-columns: repeat(3, 1fr);
-	grid-template-rows: repeat(2, 360px);
-	gap: 15px;
+	grid-template-rows: repeat(2, 280px);
+	gap: 10px;
 	position: relative;
 	width: 100%;
 }
@@ -49,10 +50,10 @@
 	left: 50%;
 	transform: translate(-50%, -50%);
 	background: white;
-	padding: 60px 0;
-	width: 540px;
-	border-radius: 20px;
-	box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+	padding: 40px 24px;
+	width: 720px;
+	border-radius: 16px;
+	box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
 	z-index: 100;
 	border: none;
 	text-align: center;
@@ -67,14 +68,14 @@
 .ciq-agents-section .logo-box .ciq-logo-svg {
 	display: block;
 	width: 100%;
-	max-width: 400px;
+	max-width: 480px;
 	height: auto;
 	object-fit: contain;
 }
 
 .ciq-agents-section .logo-box .ciq-logo-svg {
 	width: 100%;
-	max-width: 400px;
+	max-width: 480px;
 	height: auto;
 }
 
@@ -84,8 +85,8 @@
 	background: linear-gradient(180deg, rgb(37, 99, 235) 0%, rgb(29, 78, 216) 40%, rgb(0, 26, 95) 100%);
 	border: 1px solid rgba(37, 99, 235, 0.3);
 	color: #ffffff;
-	padding: 40px;
-	border-radius: 35px;
+	padding: 24px 20px;
+	border-radius: 24px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
@@ -96,7 +97,7 @@
 .ciq-agents-section .content-wrapper {
 	text-align: left;
 	width: 100%;
-	max-width: 300px;
+	max-width: 260px;
 }
 
 .ciq-agents-section .card.top-mid {
@@ -110,35 +111,35 @@
 }
 
 .ciq-agents-section .label {
-	font-size: 10px;
+	font-size: 9px;
 	font-weight: 800;
 	text-transform: uppercase;
-	letter-spacing: 1.2px;
-	margin-bottom: 4px;
+	letter-spacing: 1px;
+	margin-bottom: 2px;
 	color: #ffffff;
 }
 
 .ciq-agents-section .card h2 {
-	margin: 0 0 10px 0;
-	font-size: 30px;
+	margin: 0 0 6px 0;
+	font-size: 22px;
 	font-weight: 800;
 	display: flex;
 	align-items: center;
-	line-height: 1;
+	line-height: 1.2;
 	color: #ffffff;
 }
 
 .ciq-agents-section .card h2::before {
 	content: "◆";
-	font-size: 14px;
-	margin-right: 12px;
+	font-size: 12px;
+	margin-right: 8px;
 	opacity: 0.7;
 }
 
 .ciq-agents-section .card p {
 	margin: 0;
-	font-size: 15px;
-	line-height: 1.4;
+	font-size: 13px;
+	line-height: 1.55;
 	opacity: 0.95;
 	color: #ffffff;
 }
@@ -154,16 +155,74 @@
 }
 
 @media (max-width: 900px) {
+	.ciq-agents-section {
+		padding: 20px 12px 32px;
+	}
+	.ciq-agents-section .sec-heading {
+		margin-bottom: 1rem;
+	}
 	.ciq-agents-section .canvas {
 		grid-template-columns: 1fr;
 		grid-template-rows: auto;
+		gap: 10px;
 	}
 	.ciq-agents-section .logo-box {
 		position: relative;
 		top: 0;
 		left: 0;
 		transform: none;
-		margin: 0 auto 20px auto;
+		margin: 0 auto 12px auto;
 		width: 100%;
+		max-width: 280px;
+		padding: 28px 20px;
+	}
+	.ciq-agents-section .logo-box .ciq-logo-svg {
+		max-width: 180px;
+	}
+	.ciq-agents-section .card {
+		padding: 20px 18px;
+		border-radius: 20px;
+	}
+	.ciq-agents-section .card.top-mid,
+	.ciq-agents-section .card.bot-mid {
+		border-radius: 20px;
+	}
+	.ciq-agents-section .content-wrapper {
+		max-width: 100%;
+	}
+	.ciq-agents-section .card h2 {
+		font-size: 20px;
+	}
+	.ciq-agents-section .card p {
+		font-size: 13px;
+		line-height: 1.55;
+	}
+}
+
+@media (max-width: 480px) {
+	.ciq-agents-section {
+		padding: 16px 10px 24px;
+	}
+	.ciq-agents-section .logo-box {
+		max-width: 240px;
+		padding: 20px 16px;
+	}
+	.ciq-agents-section .logo-box .ciq-logo-svg {
+		max-width: 150px;
+	}
+	.ciq-agents-section .card {
+		padding: 16px 14px;
+		border-radius: 16px;
+	}
+	.ciq-agents-section .card h2 {
+		font-size: 18px;
+	}
+	.ciq-agents-section .card h2::before {
+		font-size: 10px;
+		margin-right: 6px;
+	}
+	.ciq-agents-section .card p {
+		font-size: 12px;
+		line-height: 1.5;
 	}
 }
