@@ -3,6 +3,7 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
+		"push": "git push origin main && git push local main",
 		"dev": "next dev --turbopack",
 		"dev:no-turbopack": "next dev",
 		"build": "next build --turbopack",

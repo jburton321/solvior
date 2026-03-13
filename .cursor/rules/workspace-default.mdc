@@ -1,0 +1,21 @@
+# Default Workspace: ONE-AGENCY-WEBSITE
+
+**Primary working directory:** `~/Desktop/Cursor-Sites/ONE-AGENCY-WEBSITE`
+
+## Push workflow
+
+After committing changes, push to both GitHub and the local backup:
+
+```bash
+npm run push
+```
+
+This pushes to:
+- **origin** (GitHub): `https://github.com/jburton321/ONE-AGENCY-WEBSITE.git`
+- **local** (Desktop backup): `~/Desktop/ONE-AGENCY-WEBSITE`
+
+Or manually:
+```bash
+git push origin main
+git push local main
+```
